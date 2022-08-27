@@ -10,7 +10,7 @@ function allLinks(texto){
         resul.push({ [i[1]]: i[2] });
     }
 
-    return resul;
+    return resul.length === 0 ? "Não há links no texto" : resul;
 }
 
 function wrongType(err){
@@ -21,12 +21,12 @@ async function getFile(path){
     const encoding = 'utf-8'    
     try {
         const text = await fs.promises.readFile(path, encoding)
-        console.log(allLinks(text))
+        return allLinks(text)
     } catch (err){
         wrongType(err)
     } finally {
-        console.log(chalk.blue("Operação concluída"))
+        console.log(chalk.yellow("Operação concluída"))
     }
 }
 
-console.log(getFile('./arquivos/texto1.md'))
+module.exports = getFile;
