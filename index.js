@@ -18,7 +18,7 @@ function wrongType(err){
 }
 
 async function getFile(path){
-    const encoding = 'utf-8'    
+    const encoding = 'utf-8'
     try {
         const text = await fs.promises.readFile(path, encoding)
         return allLinks(text)
